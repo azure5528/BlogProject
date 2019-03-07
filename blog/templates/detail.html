@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1> 자세한 본문 내용입니다. </h1>
-<br><br>
+{% extends "blog/layout.html" %}
+{% block title %}
+    {{ blog.title }}
+{% endblock %}
 
-<h1> 제목 : {{ blog.title }}</h1>
-<p> 작성 날짜 : {{ blog.pub_date }}</p>
-<p> 자세한 본문 : {{ blog.body }}</p>
-</body>
-</html>
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-3"> {{ blog.title }}</h1>
+        <p class="lead">
+            작성 날짜 : {{ blog.pub_date }}
+        </p>
+        <hr class="my-4">
+        <p>  {{ blog.body }}</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/admin/blog/blog/{{ blog.id }}/change" role="button">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span>
+            </a>
+            <a class="btn  btn-lg" href="{% url 'home' %}" role="button">이전으로.</a>
+        </p>
+    </div>
+{% endblock %}
